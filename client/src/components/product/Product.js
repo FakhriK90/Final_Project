@@ -35,12 +35,12 @@ export default function Product({product}) {
           <Table.Cell>{product && product.productPrice}</Table.Cell>
           <Table.Cell>{product && product.productCategory}</Table.Cell>
           <Table.Cell><Link link to={`/updateprod/${product._id}`}>
-          <Button basic color='red'>
+          <Button className="navbar-link" basic color='red'>
               Update
             </Button>
             </Link>
             </Table.Cell>
-          <Table.Cell><Button basic color='red' onClick={()=>dispatch(deleteProduct(product._id))}>
+          <Table.Cell><Button className="navbar-link" basic color='red' onClick={()=>dispatch(deleteProduct(product._id))}>
               Delete
             </Button>
             </Table.Cell>

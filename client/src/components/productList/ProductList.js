@@ -155,7 +155,7 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-          <Link to="/addprod"><Button inverted color='brown'>
+          <Link className="navbar-link" to="/addprod"><Button inverted color='brown'>
         Add Product
       </Button></Link>
             <Grid container spacing={3}>

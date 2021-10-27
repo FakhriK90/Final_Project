@@ -29,10 +29,13 @@ export const registerUser = (newUser,history) => async (dispatch) => {
 //Signin
 export const loginUser = (detailUser,history) => async(dispatch) => {
   dispatch({type:LOADING_AUTH})
+  console.log(detailUser)
   try {
-    const response = await axios.post('/user/signin', detailUser)
+    const response = await axios.post('/user/signin',detailUser)
     dispatch({type:LOGGIN_SUCCESS, payload: response.data});
-    history.push('/')
+    console.log(response.data)
+    if( response.data.user.role== 'admin'){history.push('/home')}
+    else {history.push('/homeclient')}
   } catch (error) {
     console.dir(error)
     dispatch({type:LOGGIN_FAIL, payload:error})

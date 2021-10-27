@@ -1,8 +1,14 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUserInfo } from '../../redux/actions/actionProfileUser'
 import DisplayCart from './DisplayCart'
 
 const CartList = () => {
+    const dispatch=useDispatch()
+  useEffect(() => {
+    dispatch(getUserInfo())
+  }, [])
     const cartlist = useSelector(state => state.cartReducer.cart)
     return (
         <div>

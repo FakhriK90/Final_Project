@@ -35,7 +35,7 @@ export default function ManageUsers({user}) {
           <Table.Cell>{user && user.email}</Table.Cell>
           <Table.Cell>{user && user.adress}</Table.Cell>
           <Table.Cell>{user && user.phoneNumber}</Table.Cell>
-          <Table.Cell><Button basic color='red' onClick={()=>dispatch(deleteUser(user._id))}>
+          <Table.Cell><Button className="btnt" basic color='red' onClick={()=>dispatch(deleteUser(user._id))}>
               Delete
             </Button></Table.Cell>
         </Table.Row> 

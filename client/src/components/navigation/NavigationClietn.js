@@ -18,20 +18,20 @@ const NavigationClient = () => {
         <div>
             <nav className="navbar is-black" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item" href="https://bulma.io">
+          <a className="btnt" href="https://bulma.io">
             <img src="https://bulma.io/images/bulma-logo.png" width={112} height={28} alt="" />
           </a>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item">
+            <a className="btnt" >
               Home
             </a>
-            <a className="navbar-item">
+            <a className="btnt" href="/profile" >
               Profile
             </a>
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link">
+              <a className="btnt" >
                 More
               </a>
               <div className="navbar-dropdown">
@@ -51,12 +51,11 @@ const NavigationClient = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                  <Link to="/loggin">
-              <Button basic inverted color='green'>
+                <a className="btnt" ><Button basic inverted color='green'>
         Sign in
-      </Button>
-      </Link>
-      <Link to="/signup">
+      </Button></a>
+              
+      <Link to="/signup" className="btnt" >
       <Button basic inverted color='purple'>
         Sign up
       </Button>

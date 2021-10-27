@@ -15,10 +15,25 @@ async(req,res) => {
         if(!user) { return res.send({msg:'You must loggin'})}
         await User.findOneAndUpdate({id:req.user._id}, {cart:req.body})
         const userm = await User.findById(req.user._id)
-
         res.send({msg:'Added to cart',user:userm})
     } catch (error) {
         res.status(400).send({error, msg:'Nothing to add'})
+    }
+})
+
+// Get cart
+
+
+// Get user detail
+
+router.get('/profile',
+isAuth(),
+async(req,res)=>{
+    try {
+        const response = await User.findOne()
+        res.send(response)
+    } catch (error) {
+        res.status(400).send({msg:'No user get it'})
     }
 })
 

@@ -15,6 +15,7 @@ import SignUp from './components/signup/SignUp';
 import UpdateProduct from './components/updateProduct/UpdateProduct';
 import AdminProduct from './components/product/AdminProduct';
 import CartClient from './components/cartClient/CartClient';
+import Profle from './components/profile/Profle';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/manageusers" component={ManageUsersList} />
         <Route exact path="/cart" component={CartClient} />
         <PrivateRoute path="/product" component={Product} />
+        <PrivateRoute path='/profile' component={Profle} />
       </Switch>
     </div>
   );

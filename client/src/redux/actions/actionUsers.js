@@ -6,7 +6,7 @@ import {
   } from "../constants/actionTypesUsers";
   import axios from "axios";
   
-  
+  // Users for admin
   export const getUsres= () => async (dispatch) => {
       dispatch({type:LOADING_USERS});
       try {
@@ -23,6 +23,7 @@ import {
       }
   }
   
+  // Users for admin
   export const deleteUser = (_id) => async (dispatch) =>{
       try {
           const response = await axios.delete(`/usersmanage/manageusers/${_id}`)

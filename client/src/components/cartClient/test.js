@@ -9,7 +9,8 @@ import Paper from '@mui/material/Paper';
 import NavigationClient from '../navigation/NavigationClietn';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getUserInfo } from '../../redux/actions/actionProfileUser';
+import { addCart } from '../../redux/actions/actionCart';
+import { getProduct } from '../../redux/actions/actionsProductAdmin';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -23,7 +24,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const DisplayCart = ({cartClient}) => {
 
-  
+  const dispatch=useDispatch()
+  useEffect(() => {
+    dispatch(getProduct({productName: cartClient.productName,productPrice: cartClient.productPrice}))
+  }, [])
     return (
         <div>
           <NavigationClient/>
