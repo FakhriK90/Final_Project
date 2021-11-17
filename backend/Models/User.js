@@ -11,10 +11,6 @@ const userSchema = new mongoose.Schema({
     dateOfBirth:{type: Date},
     phoneNumber:{type: String, required:true},
     role:{type: String, enum:['admin','client'], default:'client'},
-    cart: {
-        type: Array,
-        default: []
-    }
 })
 
 module.exports = User = mongoose.model('user', userSchema)

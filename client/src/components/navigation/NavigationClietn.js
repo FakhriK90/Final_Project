@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Button } from 'semantic-ui-react'
 import { useHistory } from 'react-router-dom'
@@ -9,17 +9,21 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { purple } from '@mui/material/colors';
+import photo from './info Store.png'
+import AccountMenu from './AccountMenu'
+import NotLogged from './NotLogged'
 
 
 const NavigationClient = () => {
   const history=useHistory()
   const dispatch = useDispatch()
+  const isAuth = useSelector(state => state.authReducer.isAuth)
     return (
         <div>
             <nav className="navbar is-black" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <a className="btnt" href="https://bulma.io">
-            <img src="https://bulma.io/images/bulma-logo.png" width={112} height={28} alt="" />
+            <img src={photo} width={80} height={28} alt="" />
           </a>
         </div>
         <div id="navbarBasicExample" className="navbar-menu">
@@ -51,20 +55,8 @@ const NavigationClient = () => {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <a className="btnt" ><Button basic inverted color='green'>
-        Sign in
-      </Button></a>
-              
-      <Link to="/signup" className="btnt" >
-      <Button basic inverted color='purple'>
-        Sign up
-      </Button>
-      </Link>
-      <ListItemButton>
-              <ListItemIcon>
-                <LogoutIcon onClick={()=>{dispatch(logout());;history.push('/')}} fontSize="large" sx={{ color: purple[100] }} />
-              </ListItemIcon>
-            </ListItemButton>
+                {isAuth? <AccountMenu/> :<NotLogged/>}
+                
               </div>
             </div>
           </div>

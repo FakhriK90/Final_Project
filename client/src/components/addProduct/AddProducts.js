@@ -36,13 +36,13 @@ export default function AddProducts() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-        productName: data.get('productName'),
-        productPrice: data.get('productPrice'),
-        productDesc: data.get('productDesc'),
-        productSrcUrl: data.get('productSrcUrl'),
-        productCategory: data.get('productCategory'),
-    });
+    // console.log({
+    //     productName: data.get('productName'),
+    //     productPrice: data.get('productPrice'),
+    //     productDesc: data.get('productDesc'),
+    //     productSrcUrl: data.get('productSrcUrl'),
+    //     productCategory: data.get('productCategory'),
+    // });
     dispatch(addProducts({productName: data.get('productName'),
     productPrice: data.get('productPrice'),
     productDesc: data.get('productDesc'),

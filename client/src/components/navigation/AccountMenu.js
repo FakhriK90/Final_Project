@@ -11,9 +11,17 @@ import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import PersonPinIcon from '@mui/icons-material/PersonPin';
 import Settings from '@mui/icons-material/Settings';
+import HomeIcon from '@mui/icons-material/Home';
+import { purple } from '@mui/material/colors';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Logout from '@mui/icons-material/Logout';
+import { logout } from '../../redux/actions/actions';
+import { Link } from 'react-router-dom'
 
 export default function AccountMenu() {
+    const history=useHistory()
+  const dispatch = useDispatch()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -66,9 +74,16 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
+          <Link to="/homeclient" style={{textDecoration:"none", color:"black"}} >
+          <MenuItem>
+          <HomeIcon /> Home
+        </MenuItem>
+        </Link>
+        <Link to="/profile" style={{textDecoration:"none", color:"black"}} >
         <MenuItem>
           <PersonPinIcon /> My Profile
         </MenuItem>
+        </Link>
         <MenuItem>
           <ShoppingCartRoundedIcon /> My Cart
         </MenuItem>
@@ -85,7 +100,7 @@ export default function AccountMenu() {
           </ListItemIcon>
           Settings
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={()=>{dispatch(logout());;history.push('/')}} fontSize="large" sx={{ color: purple[400] }} >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

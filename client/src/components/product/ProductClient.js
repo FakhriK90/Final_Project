@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { addCart } from '../../redux/actions/actionCart';
+import { getUserInfo } from '../../redux/actions/actionProfileUser'
+import { addToCart } from '../../redux/actions/cartClient'
 import './Product.css'
 
 const ProductClient = ({productClient}) => {
   const dispatch = useDispatch()
-  
+  useEffect(() => {
+    dispatch(getUserInfo())
+}, [dispatch])
+const userId = useSelector(state => state.profileReducer.user)
     return (
       <div className="box">
       <div>
@@ -18,10 +22,9 @@ const ProductClient = ({productClient}) => {
         <h3>{productClient && productClient.productName}</h3>
             <h4>{productClient && productClient.productPrice}</h4>
             <h5>{productClient && productClient.productCategory}</h5>
-            <Link to='/cart'>
-      <button onClick={()=>dispatch(addCart({productName:productClient.productName,
-      productPrice:productClient.productPrice}))}>Add To Cart</button>
-      </Link>
+            <Link to={`/cartclient/${userId._id}`}>
+            <button onClick={()=>dispatch(addToCart(userId._id,productClient._id,1))}>Add To Cart</button>
+            </Link>
         </div>
           
         </div>

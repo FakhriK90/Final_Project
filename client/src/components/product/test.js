@@ -10,7 +10,7 @@ const ProductClient = ({productClient}) => {
   
     return (
         <div>
-          <section className="product">
+          <div className="product">
         <div className="product__photo">
           <div className="photo-container">
             <div className="photo-main">
@@ -28,10 +28,10 @@ const ProductClient = ({productClient}) => {
             <span>COD: 45999</span>
           </div>
           <div className="price">
-          <span>{productClient && productClient.productPrice}</span>
+            R$ <span>7.93</span>
           </div>
           <div className="description">
-            <h3>{productClient && productClient.productCategory}</h3>
+            <h3>BENEFITS</h3>
             <ul>
               <li>Apples are nutricious</li>
               <li>Apples may be good for weight loss</li>
@@ -39,12 +39,9 @@ const ProductClient = ({productClient}) => {
               <li>They're linked to a lowest risk of diabetes</li>
             </ul>
           </div>
-          <Link to='/cart'>
-      <button className="buy--btn" onClick={()=>dispatch(addCart({productName:productClient.productName,
-      productPrice:productClient.productPrice}))}>Add To Cart</button>
-      </Link>
+          <button className="buy--btn">ADD TO CART</button>
         </div>
-      </section>
+      </div>
         </div>
     )
 }
