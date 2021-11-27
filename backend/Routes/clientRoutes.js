@@ -42,7 +42,6 @@ async(req,res)=>{
     const userId= req.params.id
     try {
         const cart = await Cart.findOne({userId})
-        console.log(cart)
         if (cart && cart.items.length>0) {
             res.send({cart, msg:"cart get successfully"})
         } else {
@@ -98,6 +97,57 @@ async(req,res)=>{
 }
 );
 
-// Getting cart
+// Update cart
+
+router.put('/cart/edit/:id',isAuth(),async (req,res)=>{
+    const userId=req.params.id
+    const {productId,quantity}=req.body
+    try {
+        let cart= await Cart.findOne({userId})
+        let item = await Product.findOne({_id:productId})
+        if (!item)
+        return res.status(400).send({msg:'product not found'})
+        if (!cart) {
+            return res.status(400).send({msg:'Cart not found'})
+        } else {
+            // if cart exists for tis user
+            let itemIndex = cart.items.findIndex(p=> p.productId == productId)
+            // check if product exists or not in cart
+            if (itemIndex == -1) {
+                return res.status(400).send({msg:' product not found in this cart'})
+            } else {
+                let productItem = cart.items[itemIndex];
+                productItem.quantity=quantity;
+                cart.items[itemIndex]=productItem;
+            }
+            cart.bill = cart.items.reduce((sum, item)=> sum + item.productPrice*item.quantity,0)
+            cart =await cart.save()
+            return res.send(cart)
+        }
+    } catch (error) {
+        return res.status(400).send({error, msg:"something went wrong"})
+    }
+})
+
+// delete item from cart
+router.delete('/cart/delete/:id/:productId',isAuth(), async(req,res)=>{
+    const userId=req.params.id;
+    const productId=req.params.productId;
+    try {
+        let cart = await Cart.findOne({userId})
+        let itemIndex = cart.items.findIndex(p=> p.productId == productId)
+        if (itemIndex > -1) {
+            let productItem = cart.items[itemIndex]
+            cart.bill -= productItem.quantity*productItem.productPrice;
+            cart.items.splice(itemIndex,1)
+        }
+        // console.log(cart)
+        cart = await cart.save();
+        return res.send({msg:' item deleted successfully',cart})
+    } catch (error) {
+        console.log(error)
+        res.status(400).send({msg:'something went wrong', error})
+    }
+})
 
 module.exports = router;

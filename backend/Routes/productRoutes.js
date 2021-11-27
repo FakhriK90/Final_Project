@@ -29,6 +29,7 @@ authRole,
 
 router.get('/products',
 // isAuth(),
+// authRole,
 async(req,res) => {
   try {
     const products = await Product.find()
@@ -43,7 +44,8 @@ async(req,res) => {
 //Get one product
 
 router.get('/products/:id',
-//isAuth()
+isAuth(),
+authRole,
 async(req,res) => {
   try {
     const result = await Product.findOne({ _id: req.params.id })
@@ -58,7 +60,8 @@ async(req,res) => {
 //Update product
 
 router.put('/manageprod/:id',
-// isAuth(),
+isAuth(),
+authRole,
 async(req,res)=>{
   console.log(req.params.id)
     try {
@@ -77,7 +80,8 @@ async(req,res)=>{
 //Delete product
 
 router.delete('/manageprod/prod/:id', 
-// isAuth(),
+isAuth(),
+authRole,
 async(req,res)=>{
   try {
     const result = await Product.deleteOne({_id:req.params.id})

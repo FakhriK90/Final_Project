@@ -13,12 +13,12 @@ import SignUp from './components/signup/SignUp';
 import UpdateProduct from './components/updateProduct/UpdateProduct';
 import AdminProduct from './components/product/AdminProduct';
 import Profle from './components/profile/Profle';
-import './App.css';
 import CartList from './components/cart/CartList';
 import EditProfile from './components/profile/EditProfile';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { currentUser } from './redux/actions/actions';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch()

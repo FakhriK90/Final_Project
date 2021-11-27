@@ -30,10 +30,9 @@ export default function UpdateProduct({match}) {
   // const loading = useSelector(state => state.productsAdminReducer.isLoading);
   const dispatch = useDispatch();
   const oldProduct = useSelector(state=>state.productsAdminReducer.product)
-  console.log(oldProduct)
   useEffect(() => {
     dispatch(getProduct(match.params.id))
-  }, [match.params.id])
+  }, [match.params.id,dispatch])
 
   useEffect(() => {
     setNewProduct({...oldProduct})
@@ -51,15 +50,6 @@ export default function UpdateProduct({match}) {
 };
   const handleSubmit = (event) => {
     event.preventDefault();
-    // const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    // console.log({
-    //     productName: data.get('productName'),
-    //     productPrice: data.get('productPrice'),
-    //     productDesc: data.get('productDesc'),
-    //     productSrcUrl: data.get('productSrcUrl'),
-    //     productCategory: data.get('productCategory'),cxs
-    // });
     dispatch(updateProduct(newProduct,match.params.id,history))
     setNewProduct(({productName:"",productPrice:"",
   productDesc:"",

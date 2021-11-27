@@ -83,7 +83,7 @@ function DashboardContent() {
     const dispatch = useDispatch();
     React.useEffect(() => {
         dispatch(getProducts())
-    }, [])
+    }, [dispatch])
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -164,12 +164,11 @@ function DashboardContent() {
               {/* Product List */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                <div>
-            {loading? <div className="load">
+                {loading? <div className="load">
 </div>:<div style={{display:'flex' ,flexWrap:'wrap' , justifyContent:"space-between" ,margin:30}}>
+  
             {productList.map(e=> <Product product={e} key={e._id}/>)}
         </div> }
-        </div>
                 </Paper>
               </Grid>
             </Grid>
