@@ -49,7 +49,12 @@ export const addProducts = (newProduct, history) => async (dispatch) => {
 export const updateProduct = (product,_id,history) => async (dispatch) => {
   dispatch({ type: LOADING_PRODUCTS });
   try {
-    const response = await axios.put(`/product/manageprod/${_id}`, product);
+    const opts={
+      headers:{
+        Authorization:localStorage.getItem('token')
+      }
+    }
+    const response = await axios.put(`/product/manageprod/${_id}`, product,opts);
     dispatch({ type: UPDATE_PRODUCTS, payload: response.data.products });
     history.push("/adminproduct");
       dispatch(getProducts());
@@ -60,7 +65,12 @@ export const updateProduct = (product,_id,history) => async (dispatch) => {
 
 export const deleteProduct = (_id) => async (dispatch) => {
   try {
-    const response = await axios.delete(`/product/manageprod/prod/${_id}`);
+    const opts={
+      headers:{
+        Authorization:localStorage.getItem('token')
+      }
+    }
+    const response = await axios.delete(`/product/manageprod/prod/${_id}`,opts);
     dispatch({ type: DELETE_PRODUCTS });
     dispatch(getProducts());
   } catch (error) {
